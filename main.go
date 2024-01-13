@@ -1,10 +1,11 @@
 package main
 
-import "fmt"
+import(
+  "fmt"
+)
 
-func main() {
-	name := "Shin Thant Htun"
-  age := 18
-  fmt.Println(age)
-	fmt.Println(name)
+func main(){
+  fmt.Println("Welcome to our conference booking application!!!")
+  fmt.Println("Get your tickets here to attend")
 }
+
