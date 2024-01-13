@@ -5,19 +5,21 @@ import(
 )
 
 func main(){
-  var conferenceName = "Music Conference"
-  const conferenceTicket = 50
-  var remainingTicket = 50
+  var conferenceName string = "Music Conference"
+  const conferenceTicket int = 50
+  var remainingTicket uint = 50
 
 
   fmt.Printf("Welcome to %v booking application!!!\n" , conferenceName)
   fmt.Printf("We have total of %v tickens and %v are still available.\n", conferenceName , remainingTicket)
   fmt.Println("Get your tickets here to attend")
   
+  var bookings [50]string
+
   var firstName string
   var lastName string
   var email string
-  var userTickets int
+  var userTickets uint
   //ask user for their tickets
   fmt.Print("What's your first name : ")
   fmt.Scan(&firstName)
@@ -31,8 +33,15 @@ func main(){
   fmt.Print("How many ticket do you wanna book : ")
   fmt.Scan(&userTickets)
 
+  remainingTicket = remainingTicket - userTickets
+  bookings[0] = firstName + " " + lastName
+
+  fmt.Printf("The whole array : %v\n" , bookings)
+  fmt.Printf("The first value : %v\n" , bookings)
+
   fmt.Printf("Thank you %v %v for booking.\n" , firstName, lastName)
   fmt.Printf("You will reveice a comfirmation email at your mail address %v\n" , email)
+
   
 }
 
