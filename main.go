@@ -6,14 +6,16 @@ import (
 	"strings"
 )
 
+var conferenceName string = "Music Conference"
+
+const conferenceTicket int = 50
+
+var remainingTicket int = 50
+var Bookings []string
+
 func main() {
-	var conferenceName string = "Music Conference"
 
-	const conferenceTicket int = 50
-
-	var remainingTicket int = 50
-	var bookings []string
-	for remainingTicket > 0 && len(bookings) < 50 {
+	for remainingTicket > 0 && len(Bookings) < 50 {
 		GreetUser(conferenceName, conferenceTicket, remainingTicket)
 
 		firstName, lastName, email, userTickets := GetUserInput()
@@ -21,9 +23,9 @@ func main() {
 		isValidName, isValidEmail, isValidTickets := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTicket)
 
 		if isValidName && isValidEmail && isValidTickets {
-			bookings := BookTickets(&remainingTicket, &userTickets, bookings, firstName, lastName, email)
+			BookTickets(userTickets, firstName, lastName, email)
 			//Print first name function
-			firstNames := PrintFirstName(bookings)
+			firstNames := PrintFirstName(Bookings)
 			fmt.Printf("These are all our bookings : %v\n", firstNames)
 
 			if remainingTicket == 0 {
@@ -46,15 +48,13 @@ func main() {
 	}
 }
 
-func BookTickets(remainingTicket *int, userTickets *int, bookings []string, firstName string, lastName string, email string) []string {
-	*remainingTicket = *remainingTicket - *userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+func BookTickets(userTickets int, firstName string, lastName string, email string) {
+	remainingTicket = remainingTicket - userTickets
+	Bookings = append(Bookings, firstName+" "+lastName)
 
 	fmt.Printf("Thank you %v %v for booking.\n", firstName, lastName)
 	fmt.Printf("You will reveice a comfirmation email at your mail address %v\n", email)
-	return bookings
 }
-
 func PrintFirstName(bookings []string) []string {
 	firstNames := []string{}
 	for _, booking := range bookings {
